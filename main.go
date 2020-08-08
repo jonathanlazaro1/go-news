@@ -3,10 +3,13 @@ package main
 import (
 	"net/http"
 	"os"
+	"text/template"
 )
 
+var tpl = template.Must(template.ParseFiles("index.html"))
+
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("<h1>Hello World!</h1>"))
+	tpl.Execute(w, nil)
 }
 
 func main() {
